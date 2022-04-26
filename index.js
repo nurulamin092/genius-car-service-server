@@ -27,11 +27,12 @@ async function run() {
         });
 
         app.get('/service/:id', async (req, res) => {
-            const id = req.params.id;
 
+            const id = req.params.id;
+            console.log(req.params);
             const query = { _id: ObjectId(id) };
-            const cursor = serviceCollection.findOne(query)
-            res.send(cursor);
+            const service = await serviceCollection.findOne(query);
+            res.send(service);
         })
     }
     finally {
